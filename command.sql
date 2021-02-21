@@ -5,7 +5,7 @@ use fest;
 show tables;
 
 create table event(
-	  event_number int(10),
+	event_number int(10),
     event_name varchar(15),
     event_date date,
     first_prize int(10),
@@ -23,7 +23,7 @@ create table event(
 select * from event;
 
 create table OC(
-	  OC_ID int(10),
+	OC_ID int(10),
     first_name varchar(15),
     last_name varchar(15),
     email varchar(30),
@@ -36,7 +36,7 @@ create table OC(
 select * from OC;
 
 create table OT(
-	  OT_ID int(10),
+	OT_ID int(10),
     roll_number int(10),
     first_name varchar(15),
     last_name varchar(15),
@@ -51,14 +51,13 @@ create table OT(
 select * from OT;
 
 create table sponsor(
-	  sponsor_number int(10),
+	sponsor_number int(10),
     phone_number varchar(10),
+    email varchar(15),
     primary key(sponsor_number)
 );
 
-select * from sponsor;
-
-create table participates(
-	registration_id int(10),
-    event_number int(10)
+create table sponsors(
+	event_number int(10) references event(event_number),
+    sponsor_number int(10) references sponsor(sponsor_number)
 );
