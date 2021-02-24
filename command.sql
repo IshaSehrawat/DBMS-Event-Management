@@ -31,12 +31,9 @@ CREATE TABLE OT (
 );
 
 CREATE TABLE volunteer (
-    volunteer_id INT,
+    volunteer_id INT auto_increment,
     roll_number INT NOT NULL,
-    firstname VARCHAR(15) NOT NULL,
-    lastname VARCHAR(15),
-    email VARCHAR(30) NOT NULL,
-    phone_number VARCHAR(10) NOT NULL,
+    participant_contacted INT default 0,
     PRIMARY KEY (volunteer_id)
 );
 
@@ -49,7 +46,7 @@ CREATE TABLE assists (
 
 CREATE TABLE event (
     event_number INT AUTO_INCREMENT,
-    event_name VARCHAR(15) NOT NULL,
+    event_name VARCHAR(30) NOT NULL,
     event_date DATE,
     first_prize INT,
     second_prize INT,
@@ -60,9 +57,9 @@ CREATE TABLE event (
     budget INT,
     requirements VARCHAR(200) DEFAULT 'Not Decided',
     event_type VARCHAR(15) NOT NULL,
+    winner_id INT DEFAULT 0,
     PRIMARY KEY (event_number)
 );
-
 
 CREATE TABLE participates (
     registration_id INT REFERENCES attendees (registration_id)
@@ -70,7 +67,6 @@ CREATE TABLE participates (
     event_number INT REFERENCES event (event_number)
     ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 
 CREATE TABLE sponsor (
     sponsor_number INT,
@@ -104,7 +100,7 @@ CREATE TABLE attendees (
     registration_id INT AUTO_INCREMENT,
     first_name VARCHAR(15) NOT NULL,
     last_name VARCHAR(15),
-    email VARCHAR(30) NOT NULL,
+    email VARCHAR(50) NOT NULL,
     institute_name VARCHAR(30) DEFAULT 'NA',
     phone_number VARCHAR(10) NOT NULL,
     PRIMARY KEY (registration_id)
@@ -129,10 +125,3 @@ CREATE TABLE stalls (
 );
 
 show tables;
-
-
-
-
-
-
-
